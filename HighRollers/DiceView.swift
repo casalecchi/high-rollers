@@ -15,7 +15,7 @@ struct DiceView: View {
         VStack {
             Text("\(number)")
                 .font(.system(size: 150))
-                .foregroundColor(.white)
+                .foregroundColor(.secondary)
                 .frame(width: 300, height: 300)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
