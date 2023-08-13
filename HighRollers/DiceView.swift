@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DiceView: View {
+    @EnvironmentObject var rolls: Rolls
     @State private var number = 6
     @State private var maxNumber = 6
     
@@ -25,6 +26,8 @@ struct DiceView: View {
                 .padding()
                 .onTapGesture {
                     number = Int.random(in: 1...maxNumber)
+                    let roll = Roll(id: UUID(), number: number, diceFaces: maxNumber, time: Date.now)
+                    rolls.add(roll)
                 }
         }
     }
@@ -33,5 +36,6 @@ struct DiceView: View {
 struct DiceView_Previews: PreviewProvider {
     static var previews: some View {
         DiceView()
+            .environmentObject(Rolls())
     }
 }
