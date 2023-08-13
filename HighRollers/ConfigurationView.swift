@@ -8,13 +8,31 @@
 import SwiftUI
 
 struct ConfigurationView: View {
+    @EnvironmentObject var diceSettings: DiceSettings
+    let sides = [4, 6, 8, 10, 12, 20, 100]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            VStack {
+                Text("Info")
+                
+                HStack {
+                    Text("Dice sides:")
+                    Picker("Please select the number of sides of your dice", selection: $diceSettings.diceSides) {
+                        ForEach(sides, id: \.self) { side in
+                            Text("\(side)")
+                        }
+                    }
+                }
+            }
+            .navigationTitle("High Rollers!")
+        }
     }
 }
 
 struct ConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         ConfigurationView()
+            .environmentObject(DiceSettings())
     }
 }
