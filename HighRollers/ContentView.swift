@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var rolls = Rolls()
+    @StateObject var diceSettings = DiceSettings()
     
     var body: some View {
         TabView {
@@ -26,6 +27,7 @@ struct ContentView: View {
                 }
         }
         .environmentObject(rolls)
+        .environmentObject(diceSettings)
     }
 }
 
