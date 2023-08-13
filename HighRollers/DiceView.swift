@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DiceView: View {
     @EnvironmentObject var rolls: Rolls
+    @EnvironmentObject var diceSettings: DiceSettings
+    
     @State private var number = 6
     @State private var maxNumber = 6
     
@@ -29,6 +31,9 @@ struct DiceView: View {
                     let roll = Roll(id: UUID(), number: number, diceFaces: maxNumber, time: Date.now)
                     rolls.add(roll)
                 }
+                .onAppear {
+                    maxNumber = diceSettings.diceSides
+                }
         }
     }
 }
@@ -37,5 +42,6 @@ struct DiceView_Previews: PreviewProvider {
     static var previews: some View {
         DiceView()
             .environmentObject(Rolls())
+            .environmentObject(DiceSettings())
     }
 }
