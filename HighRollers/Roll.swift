@@ -40,6 +40,7 @@ struct Roll: Equatable, Codable, Identifiable {
     func delete(_ roll: Roll) {
         if let index = history.firstIndex(of: roll) {
             history.remove(at: index)
+            save()
         }
     }
     
