@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Roll: Codable {
+struct Roll: Codable, Identifiable {
     let id: UUID
     let number: Int
     let diceFaces: Int
