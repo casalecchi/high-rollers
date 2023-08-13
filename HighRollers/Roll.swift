@@ -7,11 +7,15 @@
 
 import Foundation
 
-struct Roll: Codable, Identifiable {
+struct Roll: Equatable, Codable, Identifiable {
     let id: UUID
     let number: Int
     let diceFaces: Int
     let time: Date
+    
+    static func ==(lhs: Roll, rhs: Roll) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
 @MainActor class Rolls: ObservableObject {
@@ -31,6 +35,12 @@ struct Roll: Codable, Identifiable {
     func add(_ roll: Roll) {
         history.append(roll)
         save()
+    }
+    
+    func delete(_ roll: Roll) {
+        if let index = history.firstIndex(of: roll) {
+            history.remove(at: index)
+        }
     }
     
     private func save() {

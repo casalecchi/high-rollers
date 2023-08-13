@@ -25,6 +25,14 @@ struct HistoryView: View {
                         Text("\(roll.time.formatted(date: .abbreviated, time: .shortened))")
                             .font(.caption)
                     }
+                    .swipeActions {
+                        Button {
+                            rolls.delete(roll)
+                        } label: {
+                            Image(systemName: "trash")
+                                .tint(.red)
+                        }
+                    }
                 }
             }
         }
