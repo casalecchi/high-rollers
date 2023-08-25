@@ -30,7 +30,6 @@ struct DiceView: View {
                 .padding()
                 .onTapGesture {
                     rollDice()
-                    number = Int.random(in: 1...maxNumber)
                     let roll = Roll(id: UUID(), number: number, diceFaces: maxNumber, time: Date.now)
                     rolls.add(roll)
                 }
@@ -77,6 +76,8 @@ struct DiceView: View {
         } catch {
             print("Failed to play pattern: \(error.localizedDescription).")
         }
+        
+        number = Int.random(in: 1...maxNumber)
     }
 }
 
